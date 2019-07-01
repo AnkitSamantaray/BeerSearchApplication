@@ -6,12 +6,27 @@ import React, {
 }                     from 'react';
 import { connect }    from 'react-redux';
 import { Link }       from 'react-router';
-import {
-  requestState
-}                     from '../../reducers/beers';
 
 const PUBLIC_URL:string = process.env.PUBLIC_URL || '';
 var data=[];
+
+
+
+const handleClick = (id, name, tagline, first_brewed, image_url) => {
+
+     data.push({
+         id:id,
+         name:name,
+         tagline:tagline,
+         first_brewed:first_brewed,
+         URL:image_url
+     });
+      console.log(data);
+};
+
+
+
+
 
 export const Beer = ({ id, name, tagline, first_brewed, image_url }:beer) =>
   <div className="beerList_item">
@@ -29,23 +44,12 @@ export const Beer = ({ id, name, tagline, first_brewed, image_url }:beer) =>
          </div>
      </div>;
 
+
 export const BeerList = ({ beers }:{ beers:beer[] }) =>
   <ul className="beerList">
     { Array.isArray(beers) && beers.map(beer => <Beer key={beer.id} {...beer}/>) }
   </ul>;
 
-
-const handleClick = (id, name, tagline, first_brewed, image_url) => {
-
-     data.push({
-         id:id,
-         name:name,
-         tagline:tagline,
-         first_brewed:first_brewed,
-         URL:image_url
-     });
-      console.log(data);
-};
 
 
 
@@ -61,12 +65,10 @@ export class BeerPage extends Component {
   static displayName = 'BeerPage';
 
   componentDidMount() {
-    const { beers } = this.props;
-    (Array.isArray(beers) && beers.length);
   }
 
   render() {
-    const { beers, page, error , params, children } = this.props;
+    const { beers,params, children } = this.props;
 
     if ( params.id ) {
       return <section className="beerPage" style={{padding:'40px 10px'}}>{ children }</section>;

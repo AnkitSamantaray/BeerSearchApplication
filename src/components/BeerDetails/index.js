@@ -2,20 +2,15 @@
 
 import './styles.css';
 
-import React, { Component }   from 'react';
+import React, {
+  Component
+}                     from 'react';
 import { connect }    from 'react-redux';
 import { push }       from 'react-router-redux';
-import {
-  Loading,
-  ErrorMessage
-}                     from '../BeerPage';
 import {
   getBeer,
   requestState
 }                     from '../../reducers/beerDetail.js';
-import {
-  Localize
-}                     from 'react-redux-i18n';
 
 const PUBLIC_URL:string = process.env.PUBLIC_URL || '';
 
@@ -35,21 +30,20 @@ export class BeerDetails extends Component {
   static displayName = 'BeerDetails';
 
   componentDidMount() {
-    const { beers, beer, params } = this.props,
+    const { beers, params } = this.props,
           id = parseInt(params.id, 10);
       this.props.getBeer(id, beers);
   }
 
 
   render() {
-    const { beer, params, loading, error, push, FavArray } = this.props;
+    const { beer, push} = this.props;
 
-    let body:React$Element<any> = <Loading/>;
 
       const { name, first_brewed, tagline, description, food_pairing, brewers_tips, ingredients, image_url } = beer,
             { hops } = ingredients;
 
-      body = <div className="beerDetails_data">
+     const body = <div className="beerDetails_data">
             <div className="img" style={{backgroundImage:`url(${image_url}), url(${PUBLIC_URL}/beer.jpg)`}}></div>
             <h2 className="name">
               <span>{name} - </span>

@@ -20,9 +20,9 @@ import {
   loadState
 }                         from '../helpers/localStorage';
 import {
-  setLocale,
   i18nReducer
 }                         from 'react-redux-i18n';
+
 
 // Reducers
 import beersReducer       from '../reducers/beers';
