@@ -8,8 +8,7 @@ import React, {
 import { connect }    from 'react-redux';
 import { push }       from 'react-router-redux';
 import {
-  getBeer,
-  requestState
+  getBeer
 }                     from '../../reducers/beerDetail.js';
 
 const PUBLIC_URL:string = process.env.PUBLIC_URL || '';
@@ -78,7 +77,6 @@ export class BeerDetails extends Component {
 
 const MapStateToProps = ( state:Object ) => ({
   beers   : state.beers.data,
-  loading : state.currentBeer.requestState === requestState.PENDING,
   beer    : state.currentBeer.data
 });
 
